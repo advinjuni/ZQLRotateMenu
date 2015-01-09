@@ -23,11 +23,9 @@
     
     NSArray *arr1 = @[@"菜单1",@"菜单2",@"菜单3",@"菜单4",@"菜单5",@"菜单6",@"菜单7",@"菜单8",@"菜单9"];
     
-    rotateView = [[ZQLRotateView alloc] initWithFrame:self.view.bounds WithTitleArrays:arr1];
+    rotateView = [[ZQLRotateView alloc] initWithTitleArrays:arr1];
     
-    [self.view addSubview:rotateView];
     
-    [self.view sendSubviewToBack:rotateView];
     
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -39,12 +37,12 @@
 
 - (IBAction)startAnimation:(id)sender
 {
-    [rotateView startAnimation];
+    [rotateView showMenu];
 }
 
 - (IBAction)endAnimation:(id)sender
 {
-    [rotateView hideAnimation];
+    [rotateView hideMenu];
 }
 
 @end

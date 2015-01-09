@@ -30,15 +30,22 @@ const float kTimeDelta = 0.05;
 
 @implementation ZQLRotateView
 
-- (id)initWithFrame:(CGRect)frame WithTitleArrays:(NSArray *)titleArray
+- (id)initWithTitleArrays:(NSArray *)titleArray
 {
-    if (self = [super initWithFrame:frame]) {
+    if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
         arr = [NSMutableArray array];
         
         hideArr = [NSMutableArray array];
         
         for (int i = 0; i < titleArray.count; i++) {
             ZQLRotateItem *item = [[ZQLRotateItem alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-40, 40) withTitle:titleArray[i] withTag:i];
+            
+            if (i == 0) {
+                UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+                iconImageView.center = CGPointMake(CGRectGetWidth(item.bounds)-30, CGRectGetHeight(item.bounds)/2);
+                iconImageView.image = [UIImage imageNamed:@"cancel"];
+                [item addSubview:iconImageView];
+            }
             item.layer.position = CGPointMake(30, CGRectGetHeight(self.bounds)/2);
             item.userInteractionEnabled = NO;
             [self addSubview:item];
@@ -75,36 +82,38 @@ const float kTimeDelta = 0.05;
             
         }
         
-        
-        
-       // [self beginingAnimation];
-        
     }
     
     return self;
 }
 
-- (void)startAnimation
+- (void)showMenu
 {
-    for (UIView *item in hideArr) {
-        item.userInteractionEnabled = YES;
-    }
+    [[[UIApplication sharedApplication] keyWindow] addSubview:self];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.75];
+    } completion:^(BOOL finished) {
+        for (UIView *item in hideArr) {
+            item.userInteractionEnabled = YES;
+        }
+        
+        CGFloat delta = (kMaxAngle-kMinAngle)/(arr.count-1);
+        for (int i =0; i<arr.count; i++) {
+            
+            CGFloat degrees = -(kMaxAngle-delta*i);
+            CGFloat duration = kBeginDuration+kTimeDelta*i;
+            ZQLRotateItem *item = arr[i];
+            
+            [item.layer addAnimation:[self rotateArrowViewByAngle:degrees withDuration:duration] forKey:@"rotate"];
+            
+            
+        }
+
+    }];
     
-    CGFloat delta = (kMaxAngle-kMinAngle)/(arr.count-1);
-    for (int i =0; i<arr.count; i++) {
-        
-        CGFloat degrees = -(kMaxAngle-delta*i);
-        CGFloat duration = kBeginDuration+kTimeDelta*i;
-        ZQLRotateItem *item = arr[i];
-        
-        [item.layer addAnimation:[self rotateArrowViewByAngle:degrees withDuration:duration] forKey:@"rotate"];
-   
-   
-    }
-   
 }
 
-- (void)hideAnimation
+- (void)hideMenu
 {
     for (UIView *item in hideArr) {
         item.userInteractionEnabled = NO;
@@ -122,6 +131,8 @@ const float kTimeDelta = 0.05;
         
     }
     
+    [self performSelector:@selector(removeFromSuperview) withObject:self afterDelay:(kBeginDuration+kTimeDelta*(arr.count-1))];
+    
     
 }
 
@@ -135,7 +146,7 @@ const float kTimeDelta = 0.05;
         ZQLRotateItem *item = arr[i];
         item.layer.transform = CATransform3DIdentity;
         [item.layer removeAllAnimations];
-        [item.layer addAnimation:[self rotateBackArrowViewByAngle:radians withDuration:0.01] forKey:@"rotateBack"];
+        [item.layer addAnimation:[self rotateBackArrowViewByAngle:radians withDuration:duration] forKey:@"rotateBack"];
         
     }
 }
@@ -181,7 +192,7 @@ const float kTimeDelta = 0.05;
     if ([self.delegate respondsToSelector:@selector(ZQLRotateView:DidChoose:)]) {
         [self.delegate ZQLRotateView:self DidChoose:tap.view.tag];
     }
-    [self hideAnimation];
+    [self hideMenu];
 }
 
 /*

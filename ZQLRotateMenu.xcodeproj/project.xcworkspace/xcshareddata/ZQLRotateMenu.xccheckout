@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>EE73A8B9-0426-416E-A96F-5E0DD241B37F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ZQLRotateMenu</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>A03445B19BC5D47AF1B8BAC99195977EFE1EA423</key>
+		<string>github.com:pingguo-zangqilong/ZQLRotateMenu.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ZQLRotateMenu.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>A03445B19BC5D47AF1B8BAC99195977EFE1EA423</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:pingguo-zangqilong/ZQLRotateMenu.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>A03445B19BC5D47AF1B8BAC99195977EFE1EA423</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>A03445B19BC5D47AF1B8BAC99195977EFE1EA423</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ZQLRotateMenu</string>
+		</dict>
+	</array>
+</dict>
+</plist>

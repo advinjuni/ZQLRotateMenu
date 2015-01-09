@@ -18,10 +18,10 @@
 
 @property (nonatomic, weak) id<ZQLRotateViewDelegate> delegate;
 
-- (id)initWithFrame:(CGRect)frame WithTitleArrays:(NSArray *)titleArray;
+- (id)initWithTitleArrays:(NSArray *)titleArray;
 
-- (void)startAnimation;
+- (void)showMenu;
 
-- (void)hideAnimation;
+- (void)hideMenu;
 
 @end
